@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace PDM_Proiect
+namespace PDMProiect
 {
     public static class MauiProgram
     {

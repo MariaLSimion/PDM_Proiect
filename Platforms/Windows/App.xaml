@@ -1,8 +1,8 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="PDM_Proiect.WinUI.App"
+    x:Class="PDMProiect.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:PDM_Proiect.WinUI">
+    xmlns:local="using:PDMProiect.WinUI">
 
 </maui:MauiWinUIApplication>

@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace PDM_Proiect
+namespace PDMProiect
 {
     public class Program
     {

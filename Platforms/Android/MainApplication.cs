@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace PDM_Proiect
+namespace PDMProiect
 {
     [Application]
     public class MainApplication : MauiApplication

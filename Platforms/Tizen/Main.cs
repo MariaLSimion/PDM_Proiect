@@ -2,7 +2,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 using System;
 
-namespace PDM_Proiect
+namespace PDMProiect
 {
     internal class Program : MauiApplication
     {

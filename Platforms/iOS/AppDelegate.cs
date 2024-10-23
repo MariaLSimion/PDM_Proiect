@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace PDM_Proiect
+namespace PDMProiect
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

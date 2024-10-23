@@ -1,4 +1,4 @@
-﻿namespace PDM_Proiect
+﻿namespace PDMProiect
 {
     public partial class App : Application
     {

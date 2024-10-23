@@ -1,4 +1,4 @@
-﻿# PDM_Proiect
+﻿# PDMProiect
 
 Membri echipa: Grigore Raluca Florentina, Rotaru Cristina Madalina, Sandu Cristina Alexandra, Simion Maria Liana
 Tema aleasa: MUZICA

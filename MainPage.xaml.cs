@@ -1,24 +1,18 @@
-﻿namespace PDM_Proiect
+﻿namespace PDMProiect
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        // Funcție care se declanșează când se apasă butonul
+        private async void OnConcertsButtonClicked(object sender, EventArgs e)
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            // Navighează către ConcertsCalendarPage
+            await Navigation.PushAsync(new ConcertsCalendarPage());
         }
     }
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PDMProiect.ConcertsCalendarPage"
+             Title="ConcertsCalendarPage">
+    <!-- StackLayout pentru a organiza elementele vertical -->
+    <StackLayout Padding="20" Spacing="15">
+
+        <!-- Label pentru titlul paginii -->
+        <Label Text="Concertele Viitoare" 
+               FontSize="24"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               TextColor="DarkBlue" />
+
+        <!-- Image pentru banner -->
+        <Image Source="concert_banner.jpg" 
+               Aspect="AspectFill"
+               HeightRequest="150" />
+
+        <!-- Label pentru subtitlu -->
+        <Label Text="Cele mai așteptate concerte din această vară!" 
+               FontSize="16"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               TextColor="Gray" />
+
+        <!-- ListView pentru lista concertelor -->
+        <ListView x:Name="ConcertList"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10" Spacing="10" Orientation="Vertical">
+
+                            <!-- Nume Concert -->
+                            <Label Text="{Binding NumeConcert}" FontSize="18" TextColor="Black" />
+
+                            <!-- Data și Locatia -->
+                            <Label Text="{Binding DataLocatie}" FontSize="14" TextColor="DarkGray" />
+
+                            <!-- Buton pentru rezervare -->
+                            <Button Text="Rezervă bilete"
+                                    BackgroundColor="DodgerBlue"
+                                    TextColor="White"
+                                    Command="{Binding RezervaBileteCommand}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
