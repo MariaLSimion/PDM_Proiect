@@ -10,7 +10,7 @@ PROGRAMAREA DISPOZITIVELOR MOBILE
 Cerințe proiecte
 Descriere:
 • Proiectul se realizează în echipă (3-4 membri)
-• Fiecare echipă va avea o temă de proiect la alegere și va implementa o soluție multiplatformă
+• Fiecare echipă va avea o temă de proiect la alegere și va implementa o soluție multiplatformă 
 (Android, iOS și Windows/macOS) cu .NET MAUI, utilizând XAML și .NET 7.0/8.0.
 Barem:
 Implementare soluție multiplatformă (90 puncte)
