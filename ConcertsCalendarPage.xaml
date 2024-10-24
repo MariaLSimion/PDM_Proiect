@@ -2,9 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PDMProiect.ConcertsCalendarPage"
              Title="Calendar Concerte">
-    <ContentPage.Content>
+    <ScrollView>
         <StackLayout Padding="10">
-            <SearchBar Placeholder="Caută concerte sau artisti"
+            <SearchBar Placeholder="Caută concerte sau artiști"
                        Text="{Binding SearchText}"
                        SearchCommand="{Binding SearchCommand}"
                        SearchCommandParameter="{Binding .}" />
@@ -13,9 +13,13 @@
                     <DataTemplate>
                         <Frame Margin="5" Padding="10" BorderColor="Gray" CornerRadius="5">
                             <StackLayout>
-                                <Label Text="{Binding NumeConcert}" FontSize="20" FontAttributes="Bold"/>
+                                <Label Text="{Binding NumeConcert}" FontSize="20" FontAttributes="Bold">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnConcertTapped" CommandParameter="{Binding .}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
                                 <Label Text="{Binding DataLocatie}" FontSize="16"/>
-                                <Button Text="Vezi artisti"
+                                <Button Text="Vezi artiști"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ShowArtistsCommand}"
                                         CommandParameter="{Binding Artists}" />
                             </StackLayout>
@@ -24,5 +28,5 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>
