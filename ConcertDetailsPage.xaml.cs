@@ -4,7 +4,7 @@ public partial class ConcertDetailsPage : ContentPage
 {
     public ConcertDetailsPage(Concert concert)
     {
-        InitializeComponent();
-        BindingContext = concert; // Seteaz? BindingContext-ul la concertul ales
+        //InitializeComponent();
+       // BindingContext = concert; // Seteaz? BindingContext-ul la concertul ales
     }
 }

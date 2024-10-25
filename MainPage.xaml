@@ -3,6 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               x:Class="PDMProiect.MainPage">
 
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="Artisti">
+            <MenuFlyoutSubItem Text="Optiuni Artisti">
+                <MenuFlyoutItem Text="Artisti in functie de genul muzical"
+                                Clicked="OnArtistByGenresBtnClicked"
+                                />
+                <MenuFlyoutItem Text="Descopera Artisti"
+                                Clicked="OnDiscoverArtistsBtnClicked"
+                                 />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+        <MenuBarItem Text="Concerte">
+            <MenuFlyoutSubItem Text="Optiuni Concerte">
+                <MenuFlyoutItem Text="Calendar Concerte"
+                                Clicked="OnConcertsCalendarBtnClicked"
+                         />
+                <MenuFlyoutItem Text="Detalii Concerte"
+                          Clicked="OnConcertDetailsBtnClicked" />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+        <MenuBarItem Text="Albume">
+            <MenuFlyoutSubItem Text="Optiuni Albume ">
+                <MenuFlyoutItem Text="Descopera Albume"
+                                Clicked="OnDiscoverAlbumsBtnClicked"
+                 />
+                <MenuFlyoutItem Text="Descopera Piese"
+                 Clicked="OnDiscoverSongsBtnClicked" />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+        <MenuBarItem Text="Magazin">
+            <MenuFlyoutSubItem Text="Optiuni Magazin">
+                <MenuFlyoutItem Text="Magazin Merch"
+                                Clicked="OnMerchStoreBtnClicked"
+                   />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+    </ContentPage.MenuBarItems>
+    
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
