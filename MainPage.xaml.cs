@@ -22,12 +22,6 @@ namespace PDMProiect
             }
         }
 
-        //// Funcție care se declanșează când se apasă butonul
-        //private async void OnConcertsButtonClicked(object sender, EventArgs e)
-        //{
-        //    //Navighează către ConcertsCalendarPage
-        //    await Navigation.PushAsync(new ConcertsCalendarPage());
-        //}
         private void OnArtistByGenresBtnClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ArtistByGenrePage());
@@ -59,8 +53,24 @@ namespace PDMProiect
         {
             Navigation.PushAsync(new MerchStore());
         }
+        private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            var selectedItem = (string)picker.SelectedItem;
+
+            // Handle the selection change
+            if (selectedItem == "Top 10 Spotify Artists")
+            {
+                // Load top 10 artists logic here
+            }
+            else if (selectedItem == "Top 10 Spotify Songs")
+            {
+                // Load top 10 songs logic here
+            }
+        }
+
     }
 
-    
+
 
 }
