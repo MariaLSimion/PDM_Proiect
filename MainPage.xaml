@@ -49,27 +49,38 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
+            <CollectionView ItemsSource="{Binding Songs}">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="0.1*, 0.4*, 0.3*, 0.3*, 0.3*">
+                        <!-- Make sure to specify the Grid.Column for each Label -->
+                        <Label Text="#" FontAttributes="Bold" Grid.Column="0" />
+                        <Label Text="Title" FontAttributes="Bold" Grid.Column="1" />
+                        <Label Text="Listeners" FontAttributes="Bold" HorizontalTextAlignment="Center" Grid.Column="2"/>
+                        <Label Text="Album" FontAttributes="Bold" HorizontalTextAlignment="Center" Grid.Column="3"/>
+                        <Label Text="Duration" FontAttributes="Bold" HorizontalTextAlignment="End" Grid.Column="4"/>
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5" ColumnDefinitions="0.1*, 0.4*, 0.3*, 0.3*, 0.3*">
+                            <!-- Rank -->
+                            <Label Text="{Binding id}" Grid.Column="0" />
+                            <!-- Song Title -->
+                            <Label Text="{Binding title}" Grid.Column="1" />
+                            <!-- Number of Listens -->
+                            <Label Text="{Binding noOfListens, StringFormat='{0:N0}'}" HorizontalTextAlignment="Center" Grid.Column="2"/>
+                            <!-- Album Name -->
+                            <Label Text="{Binding albumName}" HorizontalTextAlignment="Center" Grid.Column="3"/>
+                            <!-- Duration -->
+                            <Label Text="{Binding duration}" HorizontalTextAlignment="End" Grid.Column="4"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
 
-            <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
-            <Button Text="Vezi Concertele Viitoare"
-                BackgroundColor="DodgerBlue"
-                TextColor="White"
-                Clicked="OnConcertsButtonClicked" />
+
         </VerticalStackLayout>
     </ScrollView>
 

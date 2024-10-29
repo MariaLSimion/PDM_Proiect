@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PDMProiect
 {
-    internal class SpotifyTopSong
+    public class SpotifyTopSong
     {
         public int id { get; set; }
 
@@ -14,8 +14,6 @@ namespace PDMProiect
         public string albumName { get; set; }
         public string duration { get; set; }
         public string artistName { get; set; }
-        public string artistTitle { get; set; }
-
         public string noOfListens { get; set; }
         public string genre { get; set; }
 

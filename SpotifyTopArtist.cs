@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PDMProiect
 {
-    internal class SpotifyTopArtist
+    public class SpotifyTopArtist
     {
         public int id { get; set; }
         public int rank { get; set; }

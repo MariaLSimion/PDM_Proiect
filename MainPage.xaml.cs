@@ -1,20 +1,33 @@
-﻿namespace PDMProiect
+﻿using System.Collections.ObjectModel;
+
+namespace PDMProiect
 {
     public partial class MainPage : ContentPage
     {
-
+        public ObservableCollection<SpotifyTopSong> Songs { get; set; } = new ObservableCollection<SpotifyTopSong>();
         public MainPage()
         {
             InitializeComponent();
-          //  BindingContext = new MainPageViewModel();
+            BindingContext = this;
+
+            LoadSongs();
+          
+        }
+        private void LoadSongs()
+        {
+            var topSongs = SpotifySongService.GetTopSongs();
+            foreach (var song in topSongs)
+            {
+                Songs.Add(song);
+            }
         }
 
         //// Funcție care se declanșează când se apasă butonul
-        private async void OnConcertsButtonClicked(object sender, EventArgs e)
-        {
-            //Navighează către ConcertsCalendarPage
-            await Navigation.PushAsync(new ConcertsCalendarPage());
-        }
+        //private async void OnConcertsButtonClicked(object sender, EventArgs e)
+        //{
+        //    //Navighează către ConcertsCalendarPage
+        //    await Navigation.PushAsync(new ConcertsCalendarPage());
+        //}
         private void OnArtistByGenresBtnClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ArtistByGenrePage());
