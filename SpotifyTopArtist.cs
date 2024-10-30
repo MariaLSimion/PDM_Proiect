@@ -9,7 +9,6 @@ namespace PDMProiect
     public class SpotifyTopArtist
     {
         public int id { get; set; }
-        public int rank { get; set; }
         public string name { get; set; }
         public string country { get; set; }
         public string noOfListeners { get; set; }

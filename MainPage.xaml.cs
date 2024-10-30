@@ -4,21 +4,35 @@ namespace PDMProiect
 {
     public partial class MainPage : ContentPage
     {
-        public ObservableCollection<SpotifyTopSong> Songs { get; set; } = new ObservableCollection<SpotifyTopSong>();
+       public ObservableCollection<SpotifyTopSong> Songs { get; set; } = new ObservableCollection<SpotifyTopSong>();
+        public ObservableCollection<SpotifyTopArtist> Artists { get; set; } = new ObservableCollection<SpotifyTopArtist>();
+      
         public MainPage()
         {
             InitializeComponent();
             BindingContext = this;
 
-            LoadSongs();
-          
+             LoadSongs();
+            LoadArtists();
+           
         }
         private void LoadSongs()
+
         {
+            Songs.Clear();
             var topSongs = SpotifySongService.GetTopSongs();
             foreach (var song in topSongs)
             {
                 Songs.Add(song);
+            }
+        }
+        private void LoadArtists()
+        {
+            Artists.Clear();
+            var topArtists = SpotifyArtistService.GetTopArtists();
+            foreach(var artist in topArtists)
+            {
+                Artists.Add(artist); 
             }
         }
 
@@ -53,6 +67,7 @@ namespace PDMProiect
         {
             Navigation.PushAsync(new MerchStore());
         }
+
         private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
         {
             var picker = (Picker)sender;
@@ -62,10 +77,15 @@ namespace PDMProiect
             if (selectedItem == "Top 10 Spotify Artists")
             {
                 // Load top 10 artists logic here
+                SpotifyCollectionView.IsVisible = false;
+                SpotifyArtistsCollectionView.IsVisible = true;
+
             }
             else if (selectedItem == "Top 10 Spotify Songs")
             {
                 // Load top 10 songs logic here
+                SpotifyArtistsCollectionView.IsVisible = false;
+                SpotifyCollectionView.IsVisible = true;
             }
         }
 
