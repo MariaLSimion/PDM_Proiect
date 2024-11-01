@@ -60,6 +60,35 @@
                        VerticalOptions="Center" 
                        Margin="0" />
             </Frame>
+
+            <CarouselView x:Name="GenresCarousel" ItemsSource="{Binding Genres}" HorizontalScrollBarVisibility="Always" >
+                <CarouselView.Background>
+                    <LinearGradientBrush>
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Color="#4B0082" Offset="0.0" />
+                            <!-- Dark Purple -->
+                            <GradientStop Color="#9370DB" Offset="0.5" />
+                            <!-- Light Purple -->
+                            <GradientStop Color="#4B0082" Offset="1.0" />
+                            <!-- Dark Purple -->
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </CarouselView.Background>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True" BackgroundColor="Transparent" WidthRequest="200">
+                            <StackLayout>
+                                <Label Text="{Binding}"
+                                       TextColor="WhiteSmoke"
+                           FontSize="Large" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
             <!-- Picker for options -->
             <Picker Title="Selecteaza o optiune"
                     SelectedIndexChanged="OnPickerSelectedIndexChanged">

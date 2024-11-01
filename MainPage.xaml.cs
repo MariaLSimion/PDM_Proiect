@@ -6,7 +6,9 @@ namespace PDMProiect
     {
        public ObservableCollection<SpotifyTopSong> Songs { get; set; } = new ObservableCollection<SpotifyTopSong>();
         public ObservableCollection<SpotifyTopArtist> Artists { get; set; } = new ObservableCollection<SpotifyTopArtist>();
-      
+
+        public ObservableCollection<string> Genres { get; set; } = new ObservableCollection<string>();
+
         public MainPage()
         {
             InitializeComponent();
@@ -14,7 +16,29 @@ namespace PDMProiect
 
              LoadSongs();
             LoadArtists();
+            LoadAndInsertArtists();
+            LoadGenres();
            
+        }
+        private void LoadAndInsertArtists()
+        {
+            var artists = ArtistService.getArtists();
+            if (artists != null && artists.Any())
+            {
+                DaoArtist daoArtist = new DaoArtist();
+                daoArtist.InsertAll(artists);
+            }
+        }
+        private void LoadGenres()
+        {
+            DaoArtist daoArtist= new DaoArtist();
+            var uniqueGenres= daoArtist.GetUniqueGenres();
+
+            Genres.Clear();
+            foreach (var genre in uniqueGenres) { 
+                Genres.Add(genre);
+            }
+
         }
         private void LoadSongs()
 
@@ -82,6 +106,7 @@ namespace PDMProiect
 
             }
             else if (selectedItem == "Top 10 Spotify Songs")
+
             {
                 // Load top 10 songs logic here
                 SpotifyArtistsCollectionView.IsVisible = false;
