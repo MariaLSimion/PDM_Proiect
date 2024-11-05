@@ -4,7 +4,7 @@ namespace PDMProiect
 {
     public partial class MainPage : ContentPage
     {
-       public ObservableCollection<SpotifyTopSong> Songs { get; set; } = new ObservableCollection<SpotifyTopSong>();
+        public ObservableCollection<SpotifyTopSong> Songs { get; set; } = new ObservableCollection<SpotifyTopSong>();
         public ObservableCollection<SpotifyTopArtist> Artists { get; set; } = new ObservableCollection<SpotifyTopArtist>();
 
         public ObservableCollection<string> Genres { get; set; } = new ObservableCollection<string>();
@@ -14,11 +14,12 @@ namespace PDMProiect
             InitializeComponent();
             BindingContext = this;
 
-             LoadSongs();
+            LoadSongs();
             LoadArtists();
             LoadAndInsertArtists();
             LoadGenres();
-           
+
+
         }
         private void LoadAndInsertArtists()
         {
@@ -31,13 +32,15 @@ namespace PDMProiect
         }
         private void LoadGenres()
         {
-            DaoArtist daoArtist= new DaoArtist();
-            var uniqueGenres= daoArtist.GetUniqueGenres();
+            DaoArtist daoArtist = new DaoArtist();
+            var uniqueGenres = daoArtist.GetUniqueGenres();
 
             Genres.Clear();
-            foreach (var genre in uniqueGenres) { 
+            foreach (var genre in uniqueGenres)
+            {
                 Genres.Add(genre);
             }
+
 
         }
         private void LoadSongs()
@@ -54,21 +57,21 @@ namespace PDMProiect
         {
             Artists.Clear();
             var topArtists = SpotifyArtistService.GetTopArtists();
-            foreach(var artist in topArtists)
+            foreach (var artist in topArtists)
             {
-                Artists.Add(artist); 
+                Artists.Add(artist);
             }
         }
 
-        private void OnArtistByGenresBtnClicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new ArtistByGenrePage());
+        //private void OnArtistByGenresBtnClicked(object sender, EventArgs e)
+        //{
+        //    Navigation.PushAsync(new ArtistByGenrePage());
 
-        }
+        //}
 
         private void OnDiscoverArtistsBtnClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ArtistByGenrePage());
+            Navigation.PushAsync(new MainPage());
         }
 
         private void OnConcertsCalendarBtnClicked(object sender, EventArgs e)
@@ -97,10 +100,10 @@ namespace PDMProiect
             var picker = (Picker)sender;
             var selectedItem = (string)picker.SelectedItem;
 
-            // Handle the selection change
+
             if (selectedItem == "Top 10 Spotify Artists")
             {
-                // Load top 10 artists logic here
+
                 SpotifyCollectionView.IsVisible = false;
                 SpotifyArtistsCollectionView.IsVisible = true;
 
@@ -108,14 +111,35 @@ namespace PDMProiect
             else if (selectedItem == "Top 10 Spotify Songs")
 
             {
-                // Load top 10 songs logic here
+
                 SpotifyArtistsCollectionView.IsVisible = false;
                 SpotifyCollectionView.IsVisible = true;
             }
         }
 
+        //private async void OnGenreSelected(object sender, CurrentItemChangedEventArgs e)
+        //{
+        //    if (e.CurrentItem is string selectedGenre)
+        //    {
+        //        await Navigation.PushAsync(new ArtistByGenrePage(selectedGenre));
+        //    }
+        //}
+        private async void OnGenreSelected(object sender, EventArgs e)
+        {
+            // Get the selected genre from the Button's BindingContext
+            var button = sender as Button;
+            var selectedGenre = button?.BindingContext as string;
+
+            if (!string.IsNullOrEmpty(selectedGenre))
+            {
+                // Navigate to ArtistByGenrePage with the selected genre
+                await Navigation.PushAsync(new ArtistByGenrePage(selectedGenre));
+            }
+
+        }
+
+
+
     }
-
-
 
 }

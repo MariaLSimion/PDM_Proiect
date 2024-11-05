@@ -17,9 +17,24 @@ namespace PDMProiect
             conn = new SQLiteConnection(cale);  
             conn.CreateTable<Artist>();
         }
+        public bool ArtistExists(string name, int id)
+        {
+            return conn.Table<Artist>()
+                       .Any(a => a.name == name && a.id == id);
+        }
+
         public int InsertAll(List<Artist> artists)
         {
-            return conn.InsertAll(artists);
+            int insertedCount = 0;
+            foreach (var artist in artists)
+            {
+                if (!ArtistExists(artist.name, artist.id))
+                {
+                    conn.Insert(artist);
+                    insertedCount++;
+                }
+            }
+            return insertedCount;
         }
 
         public List<string> GetUniqueGenres()
@@ -29,6 +44,13 @@ namespace PDMProiect
                        .Distinct()
                        .ToList();
         }
+        public List<Artist> GetArtistsByGenre(string genre)
+        {
+            return conn.Table<Artist>()
+                       .Where(a => a.genre == genre)
+                       .ToList();
+        }
+
 
 
     }

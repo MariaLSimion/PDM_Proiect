@@ -6,9 +6,9 @@
     <ContentPage.MenuBarItems >
                 <MenuBarItem Text="Artisti">
                     <MenuFlyoutSubItem Text="Optiuni Artisti">
-                        <MenuFlyoutItem Text="Artisti in functie de genul muzical"
+                        <!--<MenuFlyoutItem Text="Artisti in functie de genul muzical"
                             Clicked="OnArtistByGenresBtnClicked"
-                            />
+                            />-->
                         <MenuFlyoutItem Text="Descopera Artisti"
                             Clicked="OnDiscoverArtistsBtnClicked"
                              />
@@ -50,7 +50,6 @@
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
 
-            <!-- First Label for "Descopera artisti noi!" -->
             <Frame BackgroundColor="#6A0C9D" BorderColor="LightGray" CornerRadius="10" HasShadow="True" Padding="10">
                 <Label Text="Descopera artisti noi!" 
                        TextColor="WhiteSmoke"
@@ -61,16 +60,16 @@
                        Margin="0" />
             </Frame>
 
-            <CarouselView x:Name="GenresCarousel" ItemsSource="{Binding Genres}" HorizontalScrollBarVisibility="Always" >
+            <CarouselView x:Name="GenresCarousel" ItemsSource="{Binding Genres}" HorizontalScrollBarVisibility="Always" ><!--CurrentItemChanged="OnGenreSelected"-->
                 <CarouselView.Background>
                     <LinearGradientBrush>
                         <LinearGradientBrush.GradientStops>
                             <GradientStop Color="#4B0082" Offset="0.0" />
-                            <!-- Dark Purple -->
+                           
                             <GradientStop Color="#9370DB" Offset="0.5" />
-                            <!-- Light Purple -->
+                            
                             <GradientStop Color="#4B0082" Offset="1.0" />
-                            <!-- Dark Purple -->
+                           
                         </LinearGradientBrush.GradientStops>
                     </LinearGradientBrush>
                 </CarouselView.Background>
@@ -78,18 +77,24 @@
                     <DataTemplate>
                         <Frame HasShadow="True" BackgroundColor="Transparent" WidthRequest="200">
                             <StackLayout>
-                                <Label Text="{Binding}"
+                                <!--<Label Text="{Binding}"
                                        TextColor="WhiteSmoke"
                            FontSize="Large" 
                            HorizontalOptions="Center" 
-                           VerticalOptions="Center" />
+                           VerticalOptions="Center" />-->
+                                <Button Text="{Binding}"
+                                        TextColor="WhiteSmoke"
+                                        FontSize="Large" 
+                                        HorizontalOptions="Center" 
+                                        VerticalOptions="Center"
+                                        Clicked="OnGenreSelected"/>
                             </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
 
-            <!-- Picker for options -->
+            
             <Picker Title="Selecteaza o optiune"
                     SelectedIndexChanged="OnPickerSelectedIndexChanged">
                 <Picker.ItemsSource>
