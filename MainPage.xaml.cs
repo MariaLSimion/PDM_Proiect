@@ -14,6 +14,8 @@ namespace PDMProiect
             InitializeComponent();
             BindingContext = this;
 
+
+
             LoadSongs();
             LoadArtists();
             LoadAndInsertArtists();

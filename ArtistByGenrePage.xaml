@@ -4,10 +4,60 @@
              x:Class="PDMProiect.ArtistByGenrePage"
              Title="ArtistByGenrePage">
     <VerticalStackLayout>
-        <ListView ItemsSource="{Binding Artists}">
+
+        <Frame BackgroundColor="#6A0C9D" BorderColor="LightGray" CornerRadius="10" HasShadow="True" Padding="10">
+            <Label Text="Descopera artisti din categoria selectata!" 
+           TextColor="WhiteSmoke"
+           FontSize="Large" 
+           FontAttributes="Bold" 
+           HorizontalOptions="Center" 
+           VerticalOptions="Center" 
+           Margin="0" />
+        </Frame>
+
+        <ListView ItemsSource="{Binding Artists}" HasUnevenRows="False" SeparatorVisibility="None" BackgroundColor="Transparent">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding name}"  />
+                    <!--<TextCell Text="{Binding name}"  />-->
+                    <ViewCell>
+                        <Frame BackgroundColor="WhiteSmoke"
+                               BorderColor="DarkGray"
+                               CornerRadius="10"
+                               Padding="10"
+                               Margin="0,5">
+                            <HorizontalStackLayout Spacing="15">
+
+                                <!-- Circular Image -->
+                                <Frame WidthRequest="50" HeightRequest="50" CornerRadius="25" IsClippedToBounds="True" HasShadow="False">
+                                    <Image Source="{Binding urlPhoto}" WidthRequest="50" HeightRequest="50" Aspect="AspectFill" />
+                                </Frame>
+
+
+                                <!-- Artist name -->
+                                <Label Text="{Binding name}" 
+                                       VerticalOptions="Center"
+                                       FontSize="Medium" 
+                                       TextColor="Black"
+                                       HorizontalOptions="Center"/>
+
+                                <!-- Button -->
+                                <Button Text="Descopera mai mult" 
+                                        VerticalOptions="Center" 
+                                        TextColor="White"
+                                        HorizontalOptions="End"
+                                        Clicked="OnArtistSelected">
+                                    <Button.Background>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="#4B0082" Offset="0.0" />
+                                            <GradientStop Color="#9370DB" Offset="0.5" />
+                                            <GradientStop Color="#4B0082" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </ViewCell>
+
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

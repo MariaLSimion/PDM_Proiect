@@ -17,10 +17,23 @@ public partial class ArtistByGenrePage : ContentPage
         DaoArtist daoArtist = new DaoArtist();
         var artists = daoArtist.GetArtistsByGenre(genre);
 
+        var uniqueArtists= artists.GroupBy(a => a.name)
+                               .Select(g => g.First())
+                               .ToList();
+
+
         Artists.Clear();
         foreach (var artist in artists)
         {
             Artists.Add(artist);
         }
+
+
+    }
+    private  void OnArtistSelected(object sender, EventArgs e)
+    {
+
+        Navigation.PushAsync(new DiscoverArtistsPage());
+
     }
 }

@@ -14,13 +14,18 @@ namespace PDMProiect
         public DaoArtist()
         {
             string cale = Path.Combine(FileSystem.AppDataDirectory, "artist.db");
-            conn = new SQLiteConnection(cale);  
+            conn = new SQLiteConnection(cale);
+            //DropTableIfExists();
             conn.CreateTable<Artist>();
         }
-        public bool ArtistExists(string name, int id)
+        //private void DropTableIfExists()
+        //{
+        //    conn.DropTable<Artist>();
+        //}
+        public bool ArtistExists(string name, int id, string genre)
         {
             return conn.Table<Artist>()
-                       .Any(a => a.name == name && a.id == id);
+                       .Any(a => a.name == name && a.id == id && a.genre == genre);
         }
 
         public int InsertAll(List<Artist> artists)
@@ -28,7 +33,7 @@ namespace PDMProiect
             int insertedCount = 0;
             foreach (var artist in artists)
             {
-                if (!ArtistExists(artist.name, artist.id))
+                if (!ArtistExists(artist.name, artist.id, artist.genre))
                 {
                     conn.Insert(artist);
                     insertedCount++;

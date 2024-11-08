@@ -61,33 +61,25 @@
             </Frame>
 
             <CarouselView x:Name="GenresCarousel" ItemsSource="{Binding Genres}" HorizontalScrollBarVisibility="Always" ><!--CurrentItemChanged="OnGenreSelected"-->
-                <CarouselView.Background>
-                    <LinearGradientBrush>
-                        <LinearGradientBrush.GradientStops>
-                            <GradientStop Color="#4B0082" Offset="0.0" />
-                           
-                            <GradientStop Color="#9370DB" Offset="0.5" />
-                            
-                            <GradientStop Color="#4B0082" Offset="1.0" />
-                           
-                        </LinearGradientBrush.GradientStops>
-                    </LinearGradientBrush>
-                </CarouselView.Background>
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <Frame HasShadow="True" BackgroundColor="Transparent" WidthRequest="200">
                             <StackLayout>
-                                <!--<Label Text="{Binding}"
-                                       TextColor="WhiteSmoke"
-                           FontSize="Large" 
-                           HorizontalOptions="Center" 
-                           VerticalOptions="Center" />-->
+
                                 <Button Text="{Binding}"
                                         TextColor="WhiteSmoke"
                                         FontSize="Large" 
                                         HorizontalOptions="Center" 
                                         VerticalOptions="Center"
-                                        Clicked="OnGenreSelected"/>
+                                        Clicked="OnGenreSelected">
+                                    <Button.Background>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="#4B0082" Offset="0.0" />
+                                            <GradientStop Color="#9370DB" Offset="0.5" />
+                                            <GradientStop Color="#4B0082" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
                             </StackLayout>
                         </Frame>
                     </DataTemplate>
