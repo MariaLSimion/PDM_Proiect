@@ -6,11 +6,47 @@ public partial class ArtistByGenrePage : ContentPage
 
 {
     public ObservableCollection<Artist> Artists { get; set; } = new ObservableCollection<Artist>();
+    public ObservableCollection<Artist> FilteredArtists { get; set; } = new ObservableCollection<Artist>();
+
+    private string searchText;
+    public string SearchText
+    {
+        get => searchText;
+        set
+        {
+            searchText = value;
+            OnPropertyChanged(nameof(SearchText));
+            FilterArtists(); 
+        }
+    }
+
     public ArtistByGenrePage(string genre)
     {
         InitializeComponent();
         BindingContext = this;
         LoadArtistsByGenre(genre);
+    }
+    private void FilterArtists()
+    {
+        if (string.IsNullOrWhiteSpace(SearchText))
+        {
+            
+            FilteredArtists.Clear();
+            foreach (var artist in Artists)
+            {
+                FilteredArtists.Add(artist);
+            }
+        }
+        else
+        {
+            var filtered = Artists.Where(a => a.name.ToLower().Contains(SearchText.ToLower()));
+
+            FilteredArtists.Clear();
+            foreach (var artist in filtered)
+            {
+                FilteredArtists.Add(artist);
+            }
+        }
     }
     private void LoadArtistsByGenre(string genre)
     {
@@ -26,6 +62,12 @@ public partial class ArtistByGenrePage : ContentPage
         foreach (var artist in artists)
         {
             Artists.Add(artist);
+        }
+
+        FilteredArtists.Clear();
+        foreach (var artist in uniqueArtists)
+        {
+            FilteredArtists.Add(artist);
         }
 
 
