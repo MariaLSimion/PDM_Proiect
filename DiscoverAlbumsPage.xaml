@@ -2,11 +2,79 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PDMProiect.DiscoverAlbumsPage"
-             Title="DiscoverAlbumsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Descopera albume">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- SearchBar pentru filtrare pe album/artist/melodie -->
+            <SearchBar Placeholder="Caută albume, artiști sau melodii"
+                   Text="{Binding SearchText}"
+                   SearchCommand="{Binding SearchCommand}"
+                   SearchCommandParameter="{Binding .}" />
+
+            <!-- CollectionView pentru lista de albume -->
+            <CollectionView ItemsSource="{Binding FilteredAlbums}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="5,10" Padding="10" BorderColor="Gray" CornerRadius="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Imagine Album -->
+                                <Image Source="{Binding CoverImage}" Grid.Column="0" WidthRequest="100" HeightRequest="100" Aspect="AspectFill"/>
+
+                                <!-- Detalii Album -->
+                                <StackLayout Grid.Column="1" Padding="10">
+                                    <Label Text="{Binding AlbumName}" FontSize="20" FontAttributes="Bold"/>
+                                    <Label Text="{Binding ArtistName}" FontSize="16"/>
+                                    
+                                    <!-- Buton pentru a extinde/restrânge lista de melodii -->
+                                    <Button Text="{Binding IsSongsVisible, Converter={StaticResource BoolToTextConverter}, ConverterParameter='Vezi melodii|Ascunde melodii'}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ToggleSongsVisibilityCommand}"
+                                    CommandParameter="{Binding .}" 
+                                    BackgroundColor="#C8A2C8"/>
+
+                                    <!-- Lista melodiilor, vizibilă doar dacă IsSongsVisible este true -->
+                                    <CollectionView ItemsSource="{Binding Songs}" IsVisible="{Binding IsSongsVisible}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <!--<StackLayout Orientation="Horizontal" Padding="0,5">
+                                                    <Label Text="{Binding .}" FontSize="16" VerticalOptions="Center"/>
+                                                    <Button Text="Ascultă"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.PlaySongCommand}"
+                                                        CommandParameter="{Binding .}" 
+                                                        Margin="10,0,0,0"
+                                                        BackgroundColor="#C8A2C8"
+                                                        VerticalOptions="Center"/>
+                                                </StackLayout>-->
+                                                <Grid Padding="0,5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" /> <!--200-->
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label Text="{Binding .}" Grid.Column="0" FontSize="16" VerticalOptions="Center" />
+
+                                                    <Button Text="Ascultă"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.PlaySongCommand}"
+                                                        CommandParameter="{Binding .}"
+                                                        Grid.Column="1"
+                                                        Margin="10,0,0,0"
+                                                        BackgroundColor="#C8A2C8"
+                                                        VerticalOptions="Center" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+
 </ContentPage>
