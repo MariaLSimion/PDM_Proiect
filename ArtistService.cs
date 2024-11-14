@@ -19,7 +19,7 @@ namespace PDMProiect
             };
 
            
-            using (XmlReader reader = XmlReader.Create("https://pastebin.com/raw/SK8vGzRS", settings))
+            using (XmlReader reader = XmlReader.Create("https://raw.githubusercontent.com/sanducristina-alexandra/artists-data/refs/heads/main/artists.xml.bak", settings))
             {
                 while (reader.Read())
                 {
@@ -29,6 +29,7 @@ namespace PDMProiect
 
                         reader.ReadToDescendant("id");
                         artist.id = int.Parse(reader.ReadElementContentAsString());
+                        Console.WriteLine(artist.id);
 
                         reader.ReadToNextSibling("name");
                         artist.name = reader.ReadElementContentAsString();
@@ -41,6 +42,18 @@ namespace PDMProiect
 
                         reader.ReadToNextSibling("urlMerchStore");
                         artist.urlMerchStore = reader.ReadElementContentAsString();
+
+                        reader.ReadToNextSibling("biography");
+                        artist.biography = reader.ReadElementContentAsString();
+
+                        reader.ReadToNextSibling("funfacts");
+                        artist.funfacts = reader.ReadElementContentAsString();
+
+                        reader.ReadToNextSibling("socials");
+                        artist.socials = reader.ReadElementContentAsString();
+
+                        reader.ReadToNextSibling("popularity");
+                        artist.popularity = reader.ReadElementContentAsString();
 
                         artists.Add(artist);
                     }

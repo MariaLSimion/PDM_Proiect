@@ -23,7 +23,14 @@ namespace PDMProiect
         public string genre { get; set; }
         [Column ("merchStore")]
         public string urlMerchStore { get; set; }
-
+        [Column("biography")]
+        public string biography { get; set; }
+        [Column("funfacts")]
+        public string funfacts { get; set; }
+        [Column("socials")]
+        public string socials { get; set; }
+        [Column("popularity")]
+        public string popularity { get; set; }
         public Artist()
         {
 

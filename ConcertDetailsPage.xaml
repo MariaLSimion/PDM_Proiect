@@ -3,15 +3,22 @@
              x:Class="PDMProiect.ConcertDetailsPage"
              Title="{Binding NumeConcert}">
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Image Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="350" WidthRequest="380" />
-            <Label Text="{Binding NumeConcert}" FontSize="24" FontAttributes="Bold" />
-            <Label Text="{Binding DataLocatie}" FontSize="18" />
-            <Label Text="Artiști:" FontSize="20" FontAttributes="Bold" />
-            <Label Text="{Binding ArtistsString}" FontSize="16" />
-            <!-- Poți adăuga mai multe detalii aici, cum ar fi descrierea, imaginea etc. -->
-            <Button Text="Înapoi"
-                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.BackCommand}" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <Image Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="350" WidthRequest="380" />
+                <Label Text="{Binding NumeConcert}" FontSize="24" FontAttributes="Bold" />
+                <Label Text="{Binding DataLocatie}" FontSize="18" />
+                <HorizontalStackLayout>
+                    <Label Text="Artiști:" FontSize="20" FontAttributes="Bold" />
+                    <Label Text="Pret bilet:" FontSize="20" FontAttributes="Bold" Margin="800,0,0,0"/>
+                    <Label Text="{Binding PretBilet}" FontSize="20" FontAttributes="Bold"/>
+                </HorizontalStackLayout>
+                <Label Text="{Binding ArtistsSerialized}" FontSize="16" />
+              
+                <Button Text="Înapoi"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.BackCommand}" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
+
