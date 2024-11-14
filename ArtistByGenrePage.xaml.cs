@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace PDMProiect;
 
@@ -30,10 +31,11 @@ public partial class ArtistByGenrePage : ContentPage
 
 
     }
-    private  void OnArtistSelected(object sender, EventArgs e)
+    private async void OnArtistSelected(object sender, EventArgs e)
     {
-
-        Navigation.PushAsync(new DiscoverArtistsPage());
-
+        var selectedArtist = (Artist)((Button)sender).BindingContext;
+        await Navigation.PushAsync(new DiscoverArtistsPage(selectedArtist.id));
     }
+
+
 }

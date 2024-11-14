@@ -18,10 +18,10 @@ namespace PDMProiect
             //DropTableIfExists();
             conn.CreateTable<Artist>();
         }
-        //private void DropTableIfExists()
-        //{
-        //    conn.DropTable<Artist>();
-        //}
+        /*private void DropTableIfExists()
+        {
+            conn.DropTable<Artist>();
+        } */
         public bool ArtistExists(string name, int id, string genre)
         {
             return conn.Table<Artist>()
@@ -55,8 +55,10 @@ namespace PDMProiect
                        .Where(a => a.genre == genre)
                        .ToList();
         }
-
-
-
+        public Artist GetArtistById(int id)
+        {
+            return conn.Table<Artist>()
+               .FirstOrDefault(a => a.id == id);
+        }
     }
 }

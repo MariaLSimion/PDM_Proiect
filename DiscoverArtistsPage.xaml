@@ -1,12 +1,100 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
              x:Class="PDMProiect.DiscoverArtistsPage"
              Title="DiscoverArtistsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    
+    <ScrollView>
+        <StackLayout Padding="20">
+
+            <Frame BackgroundColor="#6A0C9D" BorderColor="LightGray" CornerRadius="10" HasShadow="True" Padding="10">
+                <Label Text="{Binding name}"
+               FontSize="40"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="White"
+               Padding="0,0,5,5"    />
+            </Frame>
+
+            <Image Source="{Binding urlPhoto}" 
+               Aspect="AspectFill"
+               HeightRequest="200"
+               WidthRequest="200"
+               HorizontalOptions="Center"
+                />
+
+                <!-- Horizontal Stack for Picker and Info Block -->
+            <StackLayout Orientation="Horizontal" Spacing="20" Padding="30,10,20,20">
+            <Picker x:Name="InfoPicker"
+                    Title="---More info---"
+                    SelectedIndexChanged="OnPickerChanged"
+                    HorizontalOptions="Start" 
+                    WidthRequest="150"
+                    HeightRequest="80">
+                <Picker.Items>
+                    <x:String>Biography</x:String>
+                    <x:String>Fun-Facts</x:String>
+                    <x:String>Socials</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Frame BorderColor="Gray"
+                   BackgroundColor="#ebd1ff"
+                   Padding="15"
+                   HeightRequest="150"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="StartAndExpand">
+                <Label x:Name="InfoLabel"
+                       FontAttributes="Bold"
+                       Text="Select an option"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       LineBreakMode="WordWrap"/>
+            </Frame>
+        </StackLayout>
+
+        <StackLayout Padding="15,5,20,10">
+
+            <Label Text="Popularity"
+                FontSize="40"
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                TextColor="#6A0C9D"   />
+            
+            <Frame BorderColor="Gray"
+                BackgroundColor="Transparent"
+                Padding="15"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="StartAndExpand">
+                    
+                <charts:ChartView x:Name="popularityChart"
+                    WidthRequest="1200"            
+                    HeightRequest="400"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"/>
+            </Frame>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Spacing="20" VerticalOptions="EndAndExpand" Padding="15,0,0,0">
+
+            <!-- Button to Merch Store -->
+                <Button Text="Go to Merch Store"
+                    VerticalOptions="Center" 
+                    TextColor="White"
+                    HorizontalOptions="Start"
+                    Clicked="OnMerchStoreButtonClicked">
+                    <Button.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#4B0082" Offset="0.0" />
+                            <GradientStop Color="#9370DB" Offset="0.5" />
+                            <GradientStop Color="#4B0082" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+        </StackLayout>
+
+    </StackLayout>
+    </ScrollView>
 </ContentPage>

@@ -30,7 +30,7 @@ namespace PDMProiect
             {
                 DaoArtist daoArtist = new DaoArtist();
                 daoArtist.InsertAll(artists);
-            }
+            }         
         }
         private void LoadGenres()
         {
