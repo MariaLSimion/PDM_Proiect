@@ -65,11 +65,7 @@ namespace PDMProiect
             }
         }
 
-        //private void OnArtistByGenresBtnClicked(object sender, EventArgs e)
-        //{
-        //    Navigation.PushAsync(new ArtistByGenrePage());
-
-        //}
+     
 
         private void OnDiscoverArtistsBtnClicked(object sender, EventArgs e)
         {
@@ -128,13 +124,13 @@ namespace PDMProiect
         //}
         private async void OnGenreSelected(object sender, EventArgs e)
         {
-            // Get the selected genre from the Button's BindingContext
+           
             var button = sender as Button;
             var selectedGenre = button?.BindingContext as string;
 
             if (!string.IsNullOrEmpty(selectedGenre))
             {
-                // Navigate to ArtistByGenrePage with the selected genre
+                
                 await Navigation.PushAsync(new ArtistByGenrePage(selectedGenre));
             }
 
