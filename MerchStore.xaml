@@ -3,10 +3,102 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PDMProiect.MerchStore"
              Title="MerchStore">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Frame BackgroundColor="#6A0C9D" BorderColor="LightGray" CornerRadius="10" HasShadow="True" Padding="10">
+            <Label Text="Merch Showcase"
+               FontSize="40"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                TextColor="White"
+                Padding="0,0,5,5" />
+            </Frame>    
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Picker x:Name="TypeFilter" Title="Type" />
+                <Picker x:Name="ArtistFilter" Title="Artist" />
+                <Picker x:Name="AvailabilityFilter" Title="Availability" />
+                <Button Text="Apply Filters" 
+                        VerticalOptions="Center" 
+                        TextColor="White"
+                        HorizontalOptions="Start" 
+                        Clicked="OnApplyFilters" >
+                    <Button.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#4B0082" Offset="0.0" />
+                            <GradientStop Color="#9370DB" Offset="0.5" />
+                            <GradientStop Color="#4B0082" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button Text="Reset Filters"
+                        VerticalOptions="Center" 
+                        TextColor="White"
+                        HorizontalOptions="Start" 
+                        Clicked="OnResetFilters">
+                    <Button.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#4B0082" Offset="0.0" />
+                            <GradientStop Color="#9370DB" Offset="0.5" />
+                            <GradientStop Color="#4B0082" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>    
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="MerchCollectionView"
+                        ItemsSource="{Binding MerchItems}"
+                        Margin="10,10,10,10"
+                SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="5" HorizontalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate Padding="10,10,10,10">
+                    <DataTemplate>
+                        <Frame Padding="10,10,10,10" Margin="10,10,10,10" CornerRadius="8" BackgroundColor="#ebd1ff">
+                            <VerticalStackLayout>
+                                <Image Source="{Binding imageLink}"
+                           Aspect="AspectFill"
+                           HeightRequest="100" 
+                           WidthRequest="100" />
+
+                                <Label Text="{Binding productName}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
+
+                                <Label Text="{Binding price, StringFormat='${0:N2}'}"
+                           FontSize="14"
+                           TextColor="Green"
+                           HorizontalOptions="Center" />
+
+                                <Button Text="Details"
+                                        FontSize="14"
+                                        VerticalOptions="Center" 
+                                        TextColor="White"
+                                        HorizontalOptions="Center"
+                                        WidthRequest="100"
+                                        Clicked="OnDetailsClicked"
+                                        CommandParameter="{Binding .}">
+                                    <Button.Background>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="#4B0082" Offset="0.0" />
+                                            <GradientStop Color="#9370DB" Offset="0.5" />
+                                            <GradientStop Color="#4B0082" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

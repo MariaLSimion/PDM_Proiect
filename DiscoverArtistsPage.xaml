@@ -24,8 +24,7 @@
                WidthRequest="200"
                HorizontalOptions="Center"
                 />
-
-                <!-- Horizontal Stack for Picker and Info Block -->
+            
             <StackLayout Orientation="Horizontal" Spacing="20" Padding="30,10,20,20">
             <Picker x:Name="InfoPicker"
                     Title="---More info---"
@@ -79,7 +78,6 @@
 
         <StackLayout Orientation="Horizontal" Spacing="20" VerticalOptions="EndAndExpand" Padding="15,0,0,0">
 
-            <!-- Button to Merch Store -->
                 <Button Text="Go to Merch Store"
                     VerticalOptions="Center" 
                     TextColor="White"

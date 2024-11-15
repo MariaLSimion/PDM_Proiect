@@ -13,11 +13,9 @@ public partial class DiscoverArtistsPage : ContentPage
 	{
 		InitializeComponent();
         Artist artist = getArtistData(artistId);
-        Debug.WriteLine(artist.id + " " + artist.name + " " + artist.urlPhoto + " " + artist.genre + " " + artist.urlMerchStore + " " + artist.biography + " " + artist.funfacts + " " + artist.socials + " " + artist.popularity);
         this.Artist = artist;
         BindingContext = Artist;
         CreatePopularityChart();
-        Debug.WriteLine("AM AJUNS AICI");
     }
 
     private Artist getArtistData(int artistId)
@@ -29,16 +27,16 @@ public partial class DiscoverArtistsPage : ContentPage
     {
         switch (InfoPicker.SelectedIndex)
         {
-            case 0: // Biography
+            case 0: 
                 InfoLabel.Text = Artist.biography ?? "Biography not available.";
                 break;
-            case 1: // Fun Facts
+            case 1: 
                 InfoLabel.Text = Artist.funfacts ?? "Fun Facts not available.";
                 break;
-            case 2: // Socials
+            case 2: 
                 if (!string.IsNullOrEmpty(Artist.socials))
                 {
-                    // Split the single string by spaces and join them with newline characters
+                    
                     InfoLabel.Text = string.Join(Environment.NewLine, Artist.socials.Split(' '));
                 }
                 else
@@ -78,7 +76,6 @@ public partial class DiscoverArtistsPage : ContentPage
             });
         }
 
-        // Create a single line chart with proper orientation
         var lineChart = new LineChart
         {
             Entries = chartEntries,
