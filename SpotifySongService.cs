@@ -10,13 +10,13 @@ namespace PDMProiect
         {
             List<SpotifyTopSong> topSongs = new List<SpotifyTopSong>();
 
-            // Create XmlReaderSettings and enable DTD processing
+            
             XmlReaderSettings settings = new XmlReaderSettings
             {
                 DtdProcessing = DtdProcessing.Parse
             };
 
-            // Pass the settings object to XmlReader.Create
+            
             using (XmlReader reader = XmlReader.Create("https://pastebin.com/raw/BCUeuS4x", settings))
             {
                 while (reader.Read())
@@ -26,7 +26,7 @@ namespace PDMProiect
                         SpotifyTopSong song = new SpotifyTopSong();
                         song.id = int.Parse(reader.GetAttribute("rank"));
 
-                        // Read nested elements within <Song>
+                        
                         reader.ReadToDescendant("Name");
                         song.title = reader.ReadElementContentAsString();
 

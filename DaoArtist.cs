@@ -15,13 +15,15 @@ namespace PDMProiect
         {
             string cale = Path.Combine(FileSystem.AppDataDirectory, "artist.db");
             conn = new SQLiteConnection(cale);
-            //DropTableIfExists();
+        }
+        public void RefreshDatabase()
+        {
+            
+            conn.DropTable<Artist>();
+
             conn.CreateTable<Artist>();
         }
-        /*private void DropTableIfExists()
-        {
-            conn.DropTable<Artist>();
-        } */
+       
         public bool ArtistExists(string name, int id, string genre)
         {
             return conn.Table<Artist>()

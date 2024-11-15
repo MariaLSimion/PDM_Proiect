@@ -1,5 +1,4 @@
-﻿//using Java.Lang;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,13 +13,13 @@ namespace PDMProiect
         {
             List<SpotifyTopArtist> topArtists = new List<SpotifyTopArtist>();
 
-            // Create XmlReaderSettings and enable DTD processing
+            
             XmlReaderSettings settings = new XmlReaderSettings
             {
                 DtdProcessing = DtdProcessing.Parse
             };
 
-            // Pass the settings object to XmlReader.Create
+            
             using (XmlReader reader = XmlReader.Create("https://pastebin.com/raw/mpg438UF", settings))
             {
                 while (reader.Read())
@@ -30,7 +29,7 @@ namespace PDMProiect
                         SpotifyTopArtist artist = new SpotifyTopArtist();
                         artist.id = int.Parse(reader.GetAttribute("rank"));
 
-                        // Read nested elements within <Song>
+                      
                         reader.ReadToDescendant("Name");
                         artist.name = reader.ReadElementContentAsString();
 
