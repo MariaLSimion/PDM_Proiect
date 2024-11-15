@@ -25,15 +25,12 @@
                     </MenuFlyoutSubItem>
                 </MenuBarItem>
 
-                <MenuBarItem Text="Albume">
-                    <MenuFlyoutSubItem Text="Optiuni Albume ">
-                        <MenuFlyoutItem Text="Descopera Albume"
-                            Clicked="OnDiscoverAlbumsBtnClicked"
-             />
-                        <MenuFlyoutItem Text="Descopera Piese"
-             Clicked="OnDiscoverSongsBtnClicked" />
-                    </MenuFlyoutSubItem>
-                </MenuBarItem>
+        <MenuBarItem Text="Albume">
+            <MenuFlyoutItem Text="Descopera Albume"
+                        Clicked="OnDiscoverAlbumsBtnClicked" />
+            <MenuFlyoutItem Text="Quiz"
+                        Clicked="OnDiscoverSongsBtnClicked" />
+        </MenuBarItem>
 
                 <MenuBarItem Text="Magazin">
                     <MenuFlyoutSubItem Text="Optiuni Magazin">

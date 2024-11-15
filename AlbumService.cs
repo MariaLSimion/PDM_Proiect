@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace PDMProiect
@@ -15,7 +13,7 @@ namespace PDMProiect
         {
             List<Album> albums = new List<Album>();
 
-            // Descarcă XML-ul și înlocuiește caracterele speciale
+            // Descarcă și curăță XML-ul
             string xmlContent = DownloadAndCleanXml("https://pastebin.com/raw/vE9K5YvC");
 
             XmlReaderSettings settings = new XmlReaderSettings
@@ -25,13 +23,13 @@ namespace PDMProiect
 
             using (XmlReader reader = XmlReader.Create(new StringReader(xmlContent), settings))
             {
+                int songId = 0;
                 while (reader.Read())
                 {
                     if (reader.NodeType == XmlNodeType.Element && reader.Name == "Album")
                     {
                         Album album = new Album();
 
-                        // Citește detaliile albumului
                         reader.ReadToDescendant("id");
                         album.Id = int.Parse(reader.ReadElementContentAsString());
 
@@ -44,8 +42,7 @@ namespace PDMProiect
                         reader.ReadToNextSibling("CoverImage");
                         album.CoverImage = reader.ReadElementContentAsString();
 
-                        // Citește lista de melodii folosind un subreader pentru a izola citirea la nivelul de album
-                        album.Songs = new List<string>();
+                        album.Songs = new List<Song>();
                         if (reader.ReadToNextSibling("Songs"))
                         {
                             using (XmlReader songReader = reader.ReadSubtree())
@@ -54,7 +51,23 @@ namespace PDMProiect
                                 {
                                     if (songReader.NodeType == XmlNodeType.Element && songReader.Name == "Song")
                                     {
-                                        album.Songs.Add(songReader.ReadElementContentAsString());
+                                        string songContent = songReader.ReadElementContentAsString();
+
+                                        // Folosește o expresie regulată pentru a extrage URL-ul
+                                        var match = Regex.Match(songContent, @"https?:\/\/\S+");
+                                        if (match.Success)
+                                        {
+                                            string url = match.Value;
+                                            string title = songContent.Replace(url, "").Trim(); // Elimină URL-ul pentru a obține doar titlul
+
+                                            album.Songs.Add(new Song
+                                            {
+                                                Title = title,
+                                                Url = url,
+                                                AlbumId = album.Id,
+                                                Id = songId++
+                                            });
+                                        }
                                     }
                                 }
                             }
@@ -67,30 +80,14 @@ namespace PDMProiect
             return albums;
         }
 
-
-        // Metodă pentru a descărca și a curăța XML-ul
         private static string DownloadAndCleanXml(string url)
         {
             using (WebClient client = new WebClient())
             {
                 string xmlContent = client.DownloadString(url);
-                // Înlocuiește caracterele speciale
-                xmlContent = xmlContent.Replace("&", "&amp;");
-                //                       .Replace("<", "&lt;")
-                //                       .Replace(">", "&gt;")
-                //                       .Replace("\"", "&quot;")
-                //                       .Replace("'", "&apos;");
-                //xmlContent = Regex.Replace(xmlContent, @"&(?!amp;|lt;|gt;|quot;|apos;)", "&amp;");
-
-                // Înlocuiește `&` cu `&amp;`, dar ignoră entitățile deja escapate
                 xmlContent = Regex.Replace(xmlContent, @"&(?!amp;|lt;|gt;|quot;|apos;)", "&amp;");
-
-                // Înlocuiește ghilimelele duble cu entitatea escapadă `&quot;` dacă nu sunt deja escapate
                 xmlContent = xmlContent.Replace("\"", "&quot;");
-
-                // Înlocuiește apostroafele cu entitatea escapadă `&apos;` dacă nu sunt deja escapate
                 xmlContent = xmlContent.Replace("'", "&apos;");
-
                 return xmlContent;
             }
         }

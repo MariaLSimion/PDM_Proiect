@@ -19,6 +19,7 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 
 		<!-- Display name -->
 		<ApplicationTitle>PDMProiect</ApplicationTitle>
