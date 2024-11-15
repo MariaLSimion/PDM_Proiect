@@ -29,6 +29,8 @@ namespace PDMProiect
             if (artists != null && artists.Any())
             {
                 DaoArtist daoArtist = new DaoArtist();
+
+                daoArtist.RefreshDatabase();
                 daoArtist.InsertAll(artists);
             }         
         }

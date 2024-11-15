@@ -51,33 +51,30 @@ public partial class DiscoverArtistsPage : ContentPage
                 break;
         }
     }
-
     private void CreatePopularityChart()
     {
         var popularityData = Artist.popularity.Split(' ')
-                                               .Select(value => int.Parse(value))
-                                               .ToList();
+        .Select(value => int.Parse(value))
+        .ToList();
         var months = new List<string>
-    {
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    };
-
+        {
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        };
         if (popularityData.Count != 12)
         {
             InfoLabel.Text = "Popularity data is incomplete or incorrect.";
             return;
         }
-
         var chartEntries = new List<Microcharts.ChartEntry>();
         for (int i = 0; i < 12; i++)
         {
             chartEntries.Add(new Microcharts.ChartEntry(popularityData[i])
             {
-                Label = months[i],                    
-                ValueLabel = popularityData[i].ToString(), 
-                Color = SKColor.Parse("#9370DB"),     
-                TextColor = SKColor.Parse("#6A0C9D")  
+                Label = months[i],
+                ValueLabel = popularityData[i].ToString(),
+                Color = SKColor.Parse("#9370DB"),
+                TextColor = SKColor.Parse("#6A0C9D")
             });
         }
 
@@ -85,20 +82,17 @@ public partial class DiscoverArtistsPage : ContentPage
         var lineChart = new LineChart
         {
             Entries = chartEntries,
-            LineMode = LineMode.Straight,              
-            LineSize = 4,                              
-            PointMode = PointMode.Circle,              
-            PointSize = 8,                             
-            BackgroundColor = SKColors.Transparent,    
-
-            LabelTextSize = 20,                       
-            LabelOrientation = Orientation.Horizontal, 
-            ValueLabelOrientation = Orientation.Horizontal, 
-
-            MaxValue = 100,  
-            MinValue = 0     
+            LineMode = LineMode.Straight,
+            LineSize = 4,
+            PointMode = PointMode.Circle,
+            PointSize = 8,
+            BackgroundColor = SKColors.Transparent,
+            LabelTextSize = 20,
+            LabelOrientation = Orientation.Horizontal,
+            ValueLabelOrientation = Orientation.Horizontal,
+            MaxValue = 100,
+            MinValue = 0
         };
-
         popularityChart.Chart = lineChart;
     }
 
