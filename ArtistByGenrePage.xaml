@@ -3,7 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PDMProiect.ArtistByGenrePage"
              Title="Artisti in functie de gen">
+
+    <ContentPage.MenuBarItems >
+        <MenuBarItem Text="Artisti">
+            <MenuFlyoutSubItem Text="Optiuni Artisti">
+
+                <MenuFlyoutItem Text="Descopera Artisti"
+                        Clicked="OnDiscoverArtistsBtnClicked"
+                         />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+        <MenuBarItem Text="Concerte">
+            <MenuFlyoutSubItem Text="Optiuni Concerte">
+                <MenuFlyoutItem Text="Calendar Concerte"
+                        Clicked="OnConcertsCalendarBtnClicked"
+                 />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+        <MenuBarItem Text="Albume">
+            <MenuFlyoutSubItem Text="Optiuni Albume">
+                <MenuFlyoutItem Text="Descopera Albume"
+                    Clicked="OnDiscoverAlbumsBtnClicked" />
+                <MenuFlyoutItem Text="Quiz"
+                    Clicked="OnDiscoverSongsBtnClicked" />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+        <MenuBarItem Text="Magazin">
+            <MenuFlyoutSubItem Text="Optiuni Magazin">
+                <MenuFlyoutItem Text="Magazin Merch"
+                        Clicked="OnMerchStoreBtnClicked"
+           />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+    </ContentPage.MenuBarItems>
     <VerticalStackLayout>
+        
 
         <Frame BackgroundColor="#6A0C9D" BorderColor="LightGray" CornerRadius="10" HasShadow="True" Padding="10">
             <Label Text="Descopera artisti din categoria selectata!" 

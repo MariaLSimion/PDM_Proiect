@@ -78,10 +78,7 @@ namespace PDMProiect
         {
             Navigation.PushAsync(new ConcertsCalendarPage());
         }
-        private void OnConcertDetailsBtnClicked(object sender, EventArgs e)
-        {
-            //Navigation.PushAsync(new ConcertDetailsPage());
-        }
+       
         private void OnDiscoverAlbumsBtnClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new DiscoverAlbumsPage());
@@ -116,14 +113,6 @@ namespace PDMProiect
                 SpotifyCollectionView.IsVisible = true;
             }
         }
-
-        //private async void OnGenreSelected(object sender, CurrentItemChangedEventArgs e)
-        //{
-        //    if (e.CurrentItem is string selectedGenre)
-        //    {
-        //        await Navigation.PushAsync(new ArtistByGenrePage(selectedGenre));
-        //    }
-        //}
         private async void OnGenreSelected(object sender, EventArgs e)
         {
            
