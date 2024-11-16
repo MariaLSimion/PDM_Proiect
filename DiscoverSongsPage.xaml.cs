@@ -28,6 +28,10 @@ public partial class DiscoverSongsPage : ContentPage
         RandomSongs = new ObservableCollection<Song>(
             RandomAlbums.Select(a => a.Songs.OrderBy(s => Guid.NewGuid()).FirstOrDefault()).Where(s => s != null));
 
+        // Shuffle songs and albums independently
+        RandomSongs = new ObservableCollection<Song>(RandomSongs.OrderBy(s => Guid.NewGuid()));
+        RandomAlbums = new ObservableCollection<Album>(RandomAlbums.OrderBy(a => Guid.NewGuid()));
+
         // Initialize matching
         songAlbumMatches = RandomSongs.ToDictionary(song => song, song => RandomAlbums.First(album => album.Songs.Contains(song)));
         currentMatches = new Dictionary<Song, Album>();
@@ -138,6 +142,10 @@ public partial class DiscoverSongsPage : ContentPage
         // For each album, pick one random song
         RandomSongs = new ObservableCollection<Song>(
             RandomAlbums.Select(a => a.Songs.OrderBy(s => Guid.NewGuid()).FirstOrDefault()).Where(s => s != null));
+
+        // Shuffle songs and albums independently
+        RandomSongs = new ObservableCollection<Song>(RandomSongs.OrderBy(s => Guid.NewGuid()));
+        RandomAlbums = new ObservableCollection<Album>(RandomAlbums.OrderBy(a => Guid.NewGuid()));
 
         // Initialize matching
         songAlbumMatches = RandomSongs.ToDictionary(song => song, song => RandomAlbums.First(album => album.Songs.Contains(song)));

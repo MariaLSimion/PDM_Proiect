@@ -23,7 +23,6 @@ namespace PDMProiect
         [Ignore]
         public List<Song> Songs { get; set; } = new List<Song>();
 
-
         private bool isSelected;
 
         [Ignore]
