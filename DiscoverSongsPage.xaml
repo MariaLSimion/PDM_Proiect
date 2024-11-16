@@ -4,6 +4,43 @@
              x:Class="PDMProiect.DiscoverSongsPage"
              x:Name="DiscoverSongsPageRoot" 
              Title="Descoperă Melodii">
+
+    <ContentPage.MenuBarItems >
+        <MenuBarItem Text="Artisti">
+            <MenuFlyoutSubItem Text="Optiuni Artisti">
+
+                <MenuFlyoutItem Text="Descopera Artisti"
+                        Clicked="OnDiscoverArtistsBtnClicked"
+                         />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+        <MenuBarItem Text="Concerte">
+            <MenuFlyoutSubItem Text="Optiuni Concerte">
+                <MenuFlyoutItem Text="Calendar Concerte"
+                        Clicked="OnConcertsCalendarBtnClicked"
+                 />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+        <MenuBarItem Text="Albume">
+            <MenuFlyoutSubItem Text="Optiuni Albume">
+                <MenuFlyoutItem Text="Descopera Albume"
+                    Clicked="OnDiscoverAlbumsBtnClicked" />
+                <MenuFlyoutItem Text="Quiz"
+                    Clicked="OnDiscoverSongsBtnClicked" />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+        <MenuBarItem Text="Magazin">
+            <MenuFlyoutSubItem Text="Optiuni Magazin">
+                <MenuFlyoutItem Text="Magazin Merch"
+                        Clicked="OnMerchStoreBtnClicked"
+           />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+    </ContentPage.MenuBarItems>
     <ContentPage.Content>
         <Grid RowDefinitions="*,Auto" ColumnDefinitions="*,*">
             <!-- Buttons for Songs -->

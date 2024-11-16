@@ -6,9 +6,7 @@
     <ContentPage.MenuBarItems >
                 <MenuBarItem Text="Artisti">
                     <MenuFlyoutSubItem Text="Optiuni Artisti">
-                        <!--<MenuFlyoutItem Text="Artisti in functie de genul muzical"
-                            Clicked="OnArtistByGenresBtnClicked"
-                            />-->
+                        
                         <MenuFlyoutItem Text="Descopera Artisti"
                             Clicked="OnDiscoverArtistsBtnClicked"
                              />
@@ -17,19 +15,19 @@
 
                 <MenuBarItem Text="Concerte">
                     <MenuFlyoutSubItem Text="Optiuni Concerte">
-                        <MenuFlyoutItem Text="Calendar Concerte"
+                <MenuFlyoutItem Text="Calendar Concerte"
                             Clicked="OnConcertsCalendarBtnClicked"
                      />
-                        <MenuFlyoutItem Text="Detalii Concerte"
-                      Clicked="OnConcertDetailsBtnClicked" />
-                    </MenuFlyoutSubItem>
+            </MenuFlyoutSubItem>
                 </MenuBarItem>
 
         <MenuBarItem Text="Albume">
+            <MenuFlyoutSubItem Text="Optiuni Albume">
             <MenuFlyoutItem Text="Descopera Albume"
                         Clicked="OnDiscoverAlbumsBtnClicked" />
             <MenuFlyoutItem Text="Quiz"
                         Clicked="OnDiscoverSongsBtnClicked" />
+            </MenuFlyoutSubItem>
         </MenuBarItem>
 
                 <MenuBarItem Text="Magazin">
